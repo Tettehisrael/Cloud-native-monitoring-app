@@ -8,8 +8,8 @@ In the "Cloud Native Monitoring App" project, our objective is to craft a modern
 2. Create a Dockerfile for the Python application.
 3. Build the Docker image using the Dockerfile.
 4. Create an Amazon Elastic Container Registry (ECR) repository using the Python boto3 module.
-5. Set up an Amazon Elastic Kubernetes Service (EKS) cluster with nodes.
-6. Deploy the Python application on Kubernetes.
+5. Confirm ECR Repository Creation and Push Docker Image
+6. Create an Amazon Elastic Kubernetes Service (EKS) Cluster and Node Group
 7. Create Kubernetes deployments and services using Python to make the app accessible over the internet.
 
 ### Step 1 
@@ -64,7 +64,11 @@ CMD ["flask", "run"]
 ```
 
 ### Step 3
-With the Dockerfile in place, we proceed to build the Docker image of our Python application. Execute the following command in your terminal to build the Docker image: `docker build -t my-python-app .`
+Now that we have our Dockerfile ready, it's time to build the Docker image and run it as a container. Follow these commands to accomplish this:
+
+To build the Docker image, open your terminal and navigate to the directory containing the Dockerfile. Execute the following command: `docker build -t my-python-app .`
+
+Once the image is built successfully, you can run it as a container with the following command: `docker run -p 5000:5000 my-python-app` Replace "my-python-app" with the actual image ID if necessary. This command will start the container, making your Python application accessible on port 5000
 
 ### Step 4
 We create an Amazon ECR repository to securely store our Docker images and ensure versioning and accessibility.
@@ -82,7 +86,24 @@ print(repository_uri)
 Run the following Python script to create an ECR repository: `python3 ecr.py`
 
 ### Step 5
-In this step, we set up an Amazon EKS cluster with nodes to orchestrate and manage our application.
+After creating your Amazon Elastic Container Registry (ECR) repository using the Python boto3 module, you can verify its existence in the AWS Management Console. Follow these steps:
+
+- Login to AWS Console: Access the AWS Management Console using your AWS account credentials.
+
+- Confirm ECR Repo: Navigate to the ECR service in the AWS Console to confirm that your repository has been successfully created. You should see it listed in the repositories.
+
+- Push Docker Image: To push your Docker image into the repository, you can obtain the push command from the AWS Console. AWS provides a specific command with authentication details that you can copy and run in your terminal. This command will upload your Docker image to the ECR repository.
+
+### Step 6
+In this step, we will create an Amazon Elastic Kubernetes Service (EKS) cluster from was console and configure a node group.
+
+- Create EKS Cluster
+
+- Create Node Group
+
+- Connect to the Cluster Using kubectl: Run the following command to configure kubectl to use your new EKS cluster `aws eks --region <your-region> update-kubeconfig --name <your-cluster-name>`
+
+### Step 7
 Replace the ECR image URL with yours in the Define deployment section.
 ```
 #create deployment and service
