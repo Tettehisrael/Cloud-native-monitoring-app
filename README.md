@@ -83,7 +83,7 @@ Run the following Python script to create an ECR repository: `python3 ecr.py`
 
 ### Step 5
 In this step, we set up an Amazon EKS cluster with nodes to orchestrate and manage our application.
-Replace ECR image url with yours in the deployment section.
+Replace the ECR image URL with yours in the Define deployment section.
 ```
 #create deployment and service
 from kubernetes import client, config
