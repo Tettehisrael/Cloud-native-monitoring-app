@@ -11,6 +11,7 @@ In the "Cloud Native Monitoring App" project, our objective is to craft a modern
 5. Confirm ECR Repository Creation and Push Docker Image
 6. Create an Amazon Elastic Kubernetes Service (EKS) Cluster and Node Group
 7. Create Kubernetes deployments and services using Python to make the app accessible over the internet.
+8. Expose a Kubernetes Service using Port Forwarding
 
 ### Step 1 
 In this step, we build the core Python application that forms the basis of our monitoring solution.
@@ -164,6 +165,11 @@ api_instance.create_namespaced_service(
 )
 ```
 Execute the following Python script to set up an EKS cluster: `python3 eks.py`
+
+### Step 8
+In this step, we'll expose a Kubernetes service using port forwarding, allowing you to access your application locally. Follow these instructions:
+- Use the following kubectl command to set up port forwarding to your Kubernetes service: `kubectl port-forward svc/<service-name> <local-port>:<service-port>`
+- Once port forwarding is established, you can access your application by opening a web browser or making API requests to `http://localhost:<local-port>`.
 
 
 
